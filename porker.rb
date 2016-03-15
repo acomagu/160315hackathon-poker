@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:set fileencoding=utf-8:
 require 'net/http'
-require 'uri'
+require 'open-uri'
 
 mykey = "46e6b984-7166-4dd8-a763-52408278a852"
 
@@ -53,9 +53,10 @@ end
 def game_state(key)
     # a get request to http://nolimitcodeem.com/api/players/:key
     url = URI.parse('http://nolimitcodeem.com/api/players/:key')
-    res = Net::HTTP.start(url.host, url.port) {|http|
-        http.get('/index.html')
-    }
+    body = open(url, &:read)
+    # res = Net::HTTP.start(url.host, url.port) do |http|
+    #     http.get('/index.html')
+    # end
 end
 
 # POST
