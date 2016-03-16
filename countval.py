@@ -10,7 +10,7 @@ def calculate(arr):
     for card in arr:
         if card[0] in numberco:
             numberco[card[0]] += 1
-            maxnum = numberco[card[0]]
+            # maxnum = numberco[card[0]]
         else:
             numberco[card[0]] = 1
 
@@ -20,16 +20,26 @@ def calculate(arr):
         else:
             attshare[card[1]] = 1
 
-    if maxnum == 4:
-        countcal += 1000
-    elif maxnum ==3:
-        countcal += 100
-    elif maxnum == 2:
-        countcal += 50
+    for k,v in numberco.items():
+        if v == 1:
+            countcal += 0
+        elif v == 2:
+            countcal += 50
+        elif v == 3:
+            countcal += 300
+        elif v == 4:
+            countcal += 10000
+
+    for k,v in attshare.items():
+        if v == 5:
+            countcal += 2000
+        elif v == 4:
+            countcal += 200
+        elif v == 3:
+            countcal += 50
+        elif v == 2:
+            countcal += 0
+        elif v== 1:
+            countcal += 0
 
     return countcal
-
-def request():
-    return requests.get('https://enova-no-limit-code-em.herokuapp.com/sandbox/players/deal-phase-key').json()
-
-print(request())
